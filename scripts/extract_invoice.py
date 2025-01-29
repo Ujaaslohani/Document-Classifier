@@ -2,7 +2,7 @@ import os
 import json
 import re
 from groq import Groq
-from scripts.ocr_extraction import extract_text  # Assuming OCR extraction function exists
+from scripts.ocr_extraction import extract_text  
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -80,7 +80,6 @@ def extract_invoice_data(file_path, category):
             temperature=0.2
         )
 
-        # Extract text response
         response_text = response.choices[0].message.content.strip()
 
         # Extract JSON part if Groq returns extra text
@@ -89,7 +88,6 @@ def extract_invoice_data(file_path, category):
         if not json_data:
             raise ValueError("No valid JSON found in API response")
 
-        # Convert JSON string to dictionary
         extracted_data = json.loads(json_data)
 
         return extracted_data
