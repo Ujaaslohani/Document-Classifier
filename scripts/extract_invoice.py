@@ -6,7 +6,6 @@ from scripts.ocr_extraction import extract_text
 from dotenv import load_dotenv
 
 load_dotenv()
-# Initialize Groq Client
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 def clean_text(text):
@@ -17,17 +16,15 @@ def extract_json_from_response(response_text):
     """Extracts JSON data from a mixed response using regex."""
     match = re.search(r'\{.*\}', response_text, re.DOTALL)
     if match:
-        return match.group(0)  # Return only the JSON part
-    return None  # No valid JSON found
+        return match.group(0)  
+    return None  
 
 def extract_invoice_data(file_path, category):
     """Extracts relevant details based on the category using OCR and Groq AI."""
     
     raw_text = extract_text(file_path) 
-    print(raw_text) 
     cleaned_text = clean_text(raw_text)  
-    print(cleaned_text)
-    # Define base prompt with necessary fields
+
     if category == "invoice":
         prompt = """
         Extract the following invoice details from the given text:
@@ -82,7 +79,6 @@ def extract_invoice_data(file_path, category):
 
         response_text = response.choices[0].message.content.strip()
 
-        # Extract JSON part if Groq returns extra text
         json_data = extract_json_from_response(response_text)
 
         if not json_data:
