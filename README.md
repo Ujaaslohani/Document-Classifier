@@ -3,6 +3,8 @@
 ## Overview
 This project is a Python-based document classification and extraction service that processes document images and classifies them into three categories: **invoice, budget, and email**. If a document is classified as an **invoice**, key details such as invoice number, date, amount, and vendor details are extracted using the **Groq AI API**.
 
+[![Watch the video](https://example.com/thumbnail.jpg)](https://drive.google.com/file/d/1sEnWsWkI8wl4MKU9iJzuMiXGqujt9Gyr/view?usp=sharing)
+
 The project includes:
 - **Document classification** using a Convolutional Neural Network (CNN)
 - **Text extraction** from images using OCR (Tesseract)
